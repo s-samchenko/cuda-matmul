@@ -1,0 +1,15 @@
+{
+  "name": "CUDA Development",
+  "image": "nvidia/cuda:12.0-devel-ubuntu22.04",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "nvidia.nsight-vscode-edition",
+        "ms-vscode.cpptools",
+        "twxs.cmake",
+        "ms-vscode.cmake-tools"
+      ]
+    }
+  },
+  "postCreateCommand": "apt-get update && apt-get install -y cmake build-essential"
+}
