@@ -1,0 +1,30 @@
+# Benchmark Results
+> Hardware: RTX 3090 (Vast.ai) | Peak: 35.5 TFLOPS, 936 GB/s
+> All times: average of 10 runs after 3 warmup runs
+
+---
+
+## Matmul
+
+| Date | Kernel | N | ms/run | GB/s | GFLOPS | vs Naive | Notes |
+|------|--------|---|--------|------|--------|----------|-------|
+| 2026-05-03 | matmul_naive | 256  | 0.023 | 33.7 | 1437.2 | 1.00x | baseline |
+| 2026-05-03 | matmul_naive | 512  | 0.130 | 24.2 | 2067.4 | 1.00x | baseline |
+| 2026-05-03 | matmul_naive | 1024 | 0.960 | 13.1 | 2236.7 | 1.00x | baseline |
+| 2026-05-03 | matmul_naive | 2048 | 7.785 |  6.5 | 2206.9 | 1.00x | baseline |
+| 2026-05-03 | matmul_tiled | 256  | 0.019 | 40.9 | 1743.0 | 1.21x | tile_size=16 |
+| 2026-05-03 | matmul_tiled | 512  | 0.103 | 30.5 | 2603.2 | 1.26x | tile_size=16 |
+| 2026-05-03 | matmul_tiled | 1024 | 0.753 | 16.7 | 2853.7 | 1.27x | tile_size=16 |
+| 2026-05-03 | matmul_tiled | 2048 | 5.928 |  8.5 | 2898.0 | 1.31x | tile_size=16 |
+| 2026-05-10 | matmul_naive | 256  | 0.024 | 32.6 | 1388.8 | 1.00x | baseline re-run |
+| 2026-05-10 | matmul_naive | 512  | 0.134 | 23.5 | 2007.3 | 1.00x | baseline re-run |
+| 2026-05-10 | matmul_naive | 1024 | 0.992 | 12.7 | 2165.8 | 1.00x | baseline re-run |
+| 2026-05-10 | matmul_naive | 2048 | 7.822 |  6.4 | 2196.4 | 1.00x | baseline re-run |
+| 2026-05-10 | matmul_tiled | 256  | 0.017 | 46.3 | 1974.0 | 1.41x | tile_size=16 |
+| 2026-05-10 | matmul_tiled | 512  | 0.091 | 34.6 | 2955.4 | 1.47x | tile_size=16 |
+| 2026-05-10 | matmul_tiled | 1024 | 0.661 | 19.0 | 3250.4 | 1.50x | tile_size=16 |
+| 2026-05-10 | matmul_tiled | 2048 | 5.374 |  9.4 | 3196.9 | 1.46x | tile_size=16 |
+| 2026-05-10 | matmul_blocked | 256  | 0.065 | 12.0 |  513.6 | 0.37x | BM=BN=128 BK=16 TM=TN=8 — latency-bound, too few blocks at small N |
+| 2026-05-10 | matmul_blocked | 512  | 0.118 | 26.6 | 2271.7 | 1.14x | BM=BN=128 BK=16 TM=TN=8 |
+| 2026-05-10 | matmul_blocked | 1024 | 0.276 | 45.6 | 7787.8 | 3.59x | BM=BN=128 BK=16 TM=TN=8 |
+| 2026-05-10 | matmul_blocked | 2048 | 1.470 | 34.2 | 11685.0 | 5.32x | BM=BN=128 BK=16 TM=TN=8 |

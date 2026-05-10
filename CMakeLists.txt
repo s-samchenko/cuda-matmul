@@ -5,9 +5,17 @@ enable_language(CUDA)
 
 set(CMAKE_CUDA_ARCHITECTURES 75)
 set(CMAKE_CUDA_STANDARD 17)
+set(CMAKE_CXX_STANDARD 17)
 
 add_executable(cuda_matmul
-        src/matmul_naive.cu
+        src/main.cu
+        src/matmul_cpu.cpp
+        src/kernels/naive.cu
+        src/kernels/tiled.cu
+        src/kernels/blocked.cu
+        include/benchmark.cuh
+        include/matmul_cpu.h
+        include/kernels.cuh
 )
 
 target_include_directories(cuda_matmul PRIVATE include)
