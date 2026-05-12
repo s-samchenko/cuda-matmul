@@ -13,6 +13,7 @@ add_executable(cuda_matmul
         src/kernels/naive.cu
         src/kernels/tiled.cu
         src/kernels/blocked.cu
+        src/kernels/blockedv2.cu
         include/benchmark.cuh
         include/matmul_cpu.h
         include/kernels.cuh

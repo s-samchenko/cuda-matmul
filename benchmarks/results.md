@@ -28,3 +28,7 @@
 | 2026-05-10 | matmul_blocked | 512  | 0.118 | 26.6 | 2271.7 | 1.14x | BM=BN=128 BK=16 TM=TN=8 |
 | 2026-05-10 | matmul_blocked | 1024 | 0.276 | 45.6 | 7787.8 | 3.59x | BM=BN=128 BK=16 TM=TN=8 |
 | 2026-05-10 | matmul_blocked | 2048 | 1.470 | 34.2 | 11685.0 | 5.32x | BM=BN=128 BK=16 TM=TN=8 |
+| 2026-05-11 | matmul_blockedv2 | 256  | 0.061 | 12.9 |   549.8 | 0.40x | As transposed [BK][BM] for contiguous SMEM reads — latency-bound |
+| 2026-05-11 | matmul_blockedv2 | 512  | 0.110 | 28.6 |  2443.1 | 1.22x | As transposed [BK][BM] for contiguous SMEM reads |
+| 2026-05-11 | matmul_blockedv2 | 1024 | 0.253 | 49.8 |  8493.5 | 3.92x | As transposed [BK][BM] for contiguous SMEM reads |
+| 2026-05-11 | matmul_blockedv2 | 2048 | 1.288 | 39.1 | 13340.7 | 6.07x | As transposed [BK][BM] for contiguous SMEM reads |
