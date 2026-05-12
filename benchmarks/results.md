@@ -6,8 +6,8 @@
 
 ## Matmul
 
-| Date | Kernel | N | ms/run | GB/s | GFLOPS | vs Naive | Notes |
-|------|--------|---|--------|------|--------|----------|-------|
+| Date       | Kernel | N | ms/run | GB/s | GFLOPS | vs Naive | Notes |
+|------------|--------|---|--------|------|--------|----------|-------|
 | 2026-05-03 | matmul_naive | 256  | 0.023 | 33.7 | 1437.2 | 1.00x | baseline |
 | 2026-05-03 | matmul_naive | 512  | 0.130 | 24.2 | 2067.4 | 1.00x | baseline |
 | 2026-05-03 | matmul_naive | 1024 | 0.960 | 13.1 | 2236.7 | 1.00x | baseline |
@@ -32,3 +32,7 @@
 | 2026-05-11 | matmul_blockedv2 | 512  | 0.110 | 28.6 |  2443.1 | 1.22x | As transposed [BK][BM] for contiguous SMEM reads |
 | 2026-05-11 | matmul_blockedv2 | 1024 | 0.253 | 49.8 |  8493.5 | 3.92x | As transposed [BK][BM] for contiguous SMEM reads |
 | 2026-05-11 | matmul_blockedv2 | 2048 | 1.288 | 39.1 | 13340.7 | 6.07x | As transposed [BK][BM] for contiguous SMEM reads |
+| 2026-05-12 | matmul_vectorizedLoads | 256  | 0.057 | 13.9 |   593.6 | 0.43x | float4 loads for As and Bs — latency-bound |
+| 2026-05-12 | matmul_vectorizedLoads | 512  | 0.101 | 31.3 |  2669.5 | 1.33x | float4 loads for As and Bs |
+| 2026-05-12 | matmul_vectorizedLoads | 1024 | 0.240 | 52.4 |  8950.7 | 4.13x | float4 loads for As and Bs |
+| 2026-05-12 | matmul_vectorizedLoads | 2048 | 1.148 | 43.9 | 14967.6 | 6.82x | float4 loads for As and Bs |

@@ -10,3 +10,4 @@ void matmul_naive_launch(const float* A, const float* B, float* C, int N);
 void matmul_tiled_launch(const float* A, const float* B, float* C, int N);
 void matmul_blocked_launch(const float* A, const float* B, float* C, int N);
 void matmul_blockedv2_launch(const float* A, const float* B, float* C, int N);
+void matmul_vec4_launch(const float* A, const float* B, float* C, int N);

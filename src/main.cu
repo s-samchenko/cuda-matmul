@@ -18,7 +18,8 @@ int main() {
         {"naive",    matmul_naive_launch},
         {"tiled",    matmul_tiled_launch},
         {"blocked",  matmul_blocked_launch},
-        {"blockedv2",  matmul_blockedv2_launch}
+        {"blockedv2",  matmul_blockedv2_launch},
+        {"vec4",  matmul_vec4_launch}
     };
 
     int sizes[] = {256, 512, 1024, 2048};
