@@ -32,7 +32,15 @@
 | 2026-05-11 | matmul_blockedv2 | 512  | 0.110 | 28.6 |  2443.1 | 1.22x | As transposed [BK][BM] for contiguous SMEM reads |
 | 2026-05-11 | matmul_blockedv2 | 1024 | 0.253 | 49.8 |  8493.5 | 3.92x | As transposed [BK][BM] for contiguous SMEM reads |
 | 2026-05-11 | matmul_blockedv2 | 2048 | 1.288 | 39.1 | 13340.7 | 6.07x | As transposed [BK][BM] for contiguous SMEM reads |
-| 2026-05-12 | matmul_vectorizedLoads | 256  | 0.057 | 13.9 |   593.6 | 0.43x | float4 loads for As and Bs — latency-bound |
-| 2026-05-12 | matmul_vectorizedLoads | 512  | 0.101 | 31.3 |  2669.5 | 1.33x | float4 loads for As and Bs |
-| 2026-05-12 | matmul_vectorizedLoads | 1024 | 0.240 | 52.4 |  8950.7 | 4.13x | float4 loads for As and Bs |
-| 2026-05-12 | matmul_vectorizedLoads | 2048 | 1.148 | 43.9 | 14967.6 | 6.82x | float4 loads for As and Bs |
+| 2026-05-12 | matmul_vec4 | 256  | 0.056 | 13.9 |   594.7 | 0.43x | float4 scatter As + float4 Bs — latency-bound |
+| 2026-05-12 | matmul_vec4 | 512  | 0.100 | 31.3 |  2674.9 | 1.33x | float4 scatter As + float4 Bs |
+| 2026-05-12 | matmul_vec4 | 1024 | 0.241 | 52.3 |  8927.9 | 4.10x | float4 scatter As + float4 Bs |
+| 2026-05-12 | matmul_vec4 | 2048 | 1.134 | 44.4 | 15152.8 | 6.92x | float4 scatter As + float4 Bs |
+| 2026-05-12 | matmul_doubleBuffering | 256  | 0.063 | 12.5 |   533.7 | 0.38x | cp.async Bs only, 32KB SMEM → 3 blocks/SM — latency-bound |
+| 2026-05-12 | matmul_doubleBuffering | 512  | 0.113 | 27.8 |  2370.2 | 1.18x | cp.async Bs only, 32KB SMEM → 3 blocks/SM |
+| 2026-05-12 | matmul_doubleBuffering | 1024 | 0.266 | 47.2 |  8063.3 | 3.71x | cp.async Bs only, 32KB SMEM → 3 blocks/SM |
+| 2026-05-12 | matmul_doubleBuffering | 2048 | 1.399 | 36.0 | 12278.4 | 5.61x | cp.async Bs only, 32KB SMEM → 3 blocks/SM |
+| 2026-05-12 | matmul_pipelined | 256  | 0.058 | 13.5 |   574.9 | 0.41x | As float4 scatter (LDS.128) + Bs cp.async + true double buf, 32KB → 3 blocks/SM — latency-bound |
+| 2026-05-12 | matmul_pipelined | 512  | 0.104 | 30.3 |  2585.2 | 1.28x | As float4 scatter (LDS.128) + Bs cp.async + true double buf, 32KB → 3 blocks/SM |
+| 2026-05-12 | matmul_pipelined | 1024 | 0.247 | 50.9 |  8691.1 | 3.99x | As float4 scatter (LDS.128) + Bs cp.async + true double buf, 32KB → 3 blocks/SM |
+| 2026-05-12 | matmul_pipelined | 2048 | 1.332 | 37.8 | 12895.6 | 5.89x | As float4 scatter (LDS.128) + Bs cp.async + true double buf, 32KB → 3 blocks/SM |

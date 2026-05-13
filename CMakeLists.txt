@@ -15,6 +15,8 @@ add_executable(cuda_matmul
         src/kernels/3_blocked.cu
         src/kernels/4_blockedv2.cu
         src/kernels/5_vec4.cu
+        src/kernels/6_double_buffering.cu
+        src/kernels/7_pipelined.cu
         include/benchmark.cuh
         include/matmul_cpu.h
         include/kernels.cuh
